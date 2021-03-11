@@ -182,7 +182,7 @@
 						var json = JSON.parse(request.responseText);
 						//console.log(json);
 						var pos = document.getElementById("list1");
-						json.links.map(links => {
+						json.luogujoke.map(luogujoke => {
 							var liPos = document.createElement("li");
 							liPos.innerHTML = `<p>${luogujoke.text}</p>`;
 							pos.append(liPos);
@@ -208,4 +208,4 @@
 			<i class="leancloud-visitors-count">1000000</i>
 		</span>
 	</body>
-</html>  
+</html>
