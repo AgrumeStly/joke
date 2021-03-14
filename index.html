@@ -16,7 +16,10 @@
 			</div>
 		</ol>
 		<script>
-			var HTML = document.writeln("<big><big><big><big><big><big><big><big><big><p align=\"middle\">疯狂加载中...</p></big></big></big></big></big></big></big></big></big><br><big><big><big><p align=\"middle\">SAM!1</p></big></big></big>");
+			var HTML = document.writeln(`
+				<big><big><big><big><big><big><big><big><big><p align=\"middle\"> 疯狂加载中... </p></big></big></big></big></big></big></big></big></big><br>
+				<big><big><big><p align=\"middle\"> SAM!1 </p></big></big></big>
+			`);
 			window.onload = function() {
 				var url = "joke-data.json";
 				var request = new XMLHttpRequest();
@@ -36,6 +39,9 @@
 				}
 				document.querySelector('big').style.display = 'none';
 			}
+			var footer = document.writeln(`
+				最后更新时间：${data.updtime}<br>
+			`);
 		</script>
 
 		<h1>块来写消化/kel</h1>
