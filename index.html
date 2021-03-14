@@ -32,7 +32,12 @@
 						var pos = document.getElementById("list1");
 						json.luogujoke.map(luogujoke => {
 							var liPos = document.createElement("li");
-							liPos.innerHTML = `<p>${luogujoke.text}</p> - <small>upd:${data.updtime}</small>`;
+							liPos.innerHTML = `<p>${luogujoke.text}</p>`;
+							pos.append(liPos);
+						});
+						json.data.map(data => {
+							var liPos = document.createElement("p");
+							liPos.innerHTML = `<small>upd:${data.updtime}</small>`;
 							pos.append(liPos);
 						});
 					}
