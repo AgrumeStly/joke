@@ -4,64 +4,330 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="" />
 	<meta charset="utf-8">
+
 	<head>
 		<title>nhml!!!</title>
-		<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-	</head>
-	<body>
-		<ol id="list1">
-			<div id="list1-header" align="middle">
-				<h1>Luogu-JOKE</h1>
-				<h2>= 绝对机密 =</h2>
-			</div>
-		</ol>
-		<script>
-			var HTML = document.writeln(`
-				<big><big><big><big><big><big><big><big><big><p align=\"middle\"> 疯狂加载中... </p></big></big></big></big></big></big></big></big></big><br>
-				<big><big><big><p align=\"middle\"> SAM!1 </p></big></big></big>
-			`);
-			window.onload = function() {
-				var url = "joke-data.json";
-				var request = new XMLHttpRequest();
-				request.open("get", url);
-				request.send(null);
-				request.onload = function() {
-					if (request.status == 200) {
-						var json = JSON.parse(request.responseText);
-						//console.log(json);
-						var pos = document.getElementById("list1");
-						json.luogujoke.map(luogujoke => {
-							var liPos = document.createElement("li");
-							if (luogujoke.text != "") {
-								liPos.innerHTML = `<p>${luogujoke.text}</p>`;
-								pos.append(liPos);
-							}
-						});
-						json.data.map(data => {
-							var liPos = document.createElement("h4");
-							liPos.innerHTML = `</h4>最后更新时间:${data.updtime}</h4>`;
-							pos.append(liPos);
-						});
-					}
-				}
-				document.querySelector('big').style.display = 'none';
-			}
-		</script>
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/semantic-ui/2.4.1/semantic.min.css"
+			rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/tomorrow.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/math.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/style.css?20181212" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/morris.js/0.5.1/morris.css"
+			rel="stylesheet">
 
-		<h3>块来写消化/kel</h3>
-		<div id="vcomments"></div>
-		<script>
-			new Valine({
-				el: '#vcomments',
-				appId: 'CQS90Q2tPC29oAusXOMNRhFE-MdYXbMMI',
-				appKey: '6pamAp1c7VhubC5cvs8zrOwe',
-				avatar: 'retro',
-				visitor: true,
-			})
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/fira-mono.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/lato.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/open-sans.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/google-fonts/exo-2.css" rel="stylesheet">
+
+		<script data-cfasync="false"
+			src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+		<script data-cfasync="false"
+			src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/semantic-ui/2.4.1/semantic.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/cdnjs/Chart.js/2.7.3/Chart.bundle.min.js">
 		</script>
-		<span id="joke" class="leancloud_visitors" data-flag-title="joke">
-			<em class="post-meta-item-text">阅读量 </em>
-			<i class="leancloud-visitors-count">1145141919810</i>
-		</span>
+		<script src="https://cdn.jsdelivr.net/npm/syzoj-public-cdn@1.0.6/self/script.js?20170710"></script>
+
+		<link href="https://cdn.staticfile.org/emoji/0.2.2/emoji.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdn.staticfile.org/emoji/0.2.2/emoji.js"></script>
+		<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+
+		<script>
+			$(document).ready(() => {
+				$('.ui.dropdown').dropdown();
+				$('.ui.checkbox').checkbox();
+				$('.menu:not(.A) .item').tab();
+				$('.button').popup();
+
+				$('.ui.menu:not(.A) a.item').on('click', function() {
+					$(this)
+						.addClass('active')
+						.siblings()
+						.removeClass('active');
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="ui borderless menu" style="height: 49px; ">
+			<div class="ui wide container">
+				<div class="header item">
+					<span style="font-family: 'Exo 2'; font-size: 1.5em; font-weight: 600; ">Joke</span>
+				</div>
+				<a class="active item" data-tab="home"><i class="home icon"></i>首页</a>
+				<a class="item" data-tab="joke"><i class="bars icon"></i>消化</a>
+				<div class="item"><i class="exclamation icon"></i>tiger0132/0133 永远滴神</div>
+			</div>
+		</div>
+
+
+		<div class="ui tab active wide container" data-tab="home">
+			<div style="margin-top: 28px; ">
+				<div class="ui main wide container">
+					<div style="padding-left: 1em; padding-right: 1em; ">
+						<div class="ui two column grid">
+							<div class="two column row">
+								<div class="twelve wide column">
+									<div class="ui bottom attached segment">
+										<p id="render-demo">
+											渲染格式：N/A
+										</p>
+										<form class="ui form">
+											<div class="four fields">
+												<div class="field">
+													<label>tag 内容</label>
+													<input type="text" name="badge" placeholder="留空则清空">
+												</div>
+												<div class="field">
+													<label>名字颜色</label>
+													<input type="text" name="color" placeholder="#66ccff">
+												</div>
+												<div class="field">
+													<label>tag 前景色</label>
+													<input type="text" name="tagTextColor" placeholder="#1f1e33">
+												</div>
+												<div class="field">
+													<label>tag 背景色</label>
+													<input type="text" name="tagBackgroundColor" placeholder="#fff">
+												</div>
+												<div class="field">
+													<label>CCF 等级</label>
+													<div class="ui selection dropdown" name="displayLevel">
+														<input type="hidden" value="0">
+														<i class="dropdown icon"></i>
+														<div class="text">隐藏</div>
+														<div class="menu">
+															<div class="item" data-value="0">隐藏</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="two inline fields">
+												<div class="field">
+													<span class="ui toggle checkbox" style="margin-right: 20px; ">
+														<input type="checkbox" name="bold" value="1">
+														<label>名字加粗</label>
+													</span>
+												</div>
+												<div class="field">
+													<span class="ui toggle checked checkbox"
+														style="margin-right: 20px; ">
+														<input type="checkbox" name="tagBold" value="1">
+														<label>tag 加粗</label>
+													</span>
+												</div>
+											</div>
+											<div class="ui blue labeled icon submit button" id="btn-modify-user">
+												<i class="ui icon edit"></i>修改
+											</div>
+										</form>
+									</div>
+									<div class="ui container segment">
+										<form class="ui form" style="margin: 0 0 1em;">
+											<h3>有什么新鲜事告诉大家</h3>
+											<div id="vcomments"></div>
+											<script>
+												new Valine({
+													el: '#vcomments',
+													appId: 'CQS90Q2tPC29oAusXOMNRhFE-MdYXbMMI',
+													appKey: '6pamAp1c7VhubC5cvs8zrOwe',
+													avatar: 'retro',
+													visitor: true,
+												})
+											</script>
+											<span id="joke" class="leancloud_visitors" data-flag-title="joke">
+												<em class="post-meta-item-text">阅读量 </em>
+												<i class="leancloud-visitors-count">1145141919810</i>
+											</span>
+										</form>
+									</div>
+								</div>
+								<div class="four wide column">
+									<h4 class="ui top attached block header">版本</h4>
+									<div class="ui bottom attached segment">
+										<div id="last-update-time">上次更新：</div>
+										<script>
+											window.onload = function() {
+												var url = "joke-data.json";
+												var request = new XMLHttpRequest();
+												request.open("get", url);
+												request.send(null);
+												request.onload = function() {
+													if (request.status == 200) {
+														var json = JSON.parse(request.responseText);
+														//console.log(json);
+														var pos = document.getElementById("last-update-time");
+														json.data.map(data => {
+															var liPos = document.createElement("p");
+															liPos.innerHTML = `<p>${data.updtime}</p>`;
+															pos.append(liPos);
+														});
+													}
+												}
+											}
+										</script>
+									</div>
+									<h4 class="ui top attached block header">信息</h4>
+									<div class="ui bottom attached segment">
+										<p>
+											状态：
+											<span id="token-status">
+												<span class="ui green label">正常</span>
+												<span class="ui blue label">uid = 114514</span>
+											</span>
+										</p>
+										<p>
+											Token 操作：
+											<span class="ui icon buttons">
+												<button class="ui copy button" data-content="复制 token"
+													data-variation="mini" id="copy-token">
+													<i class="copy icon"></i>
+												</button>
+												<button class="ui button" data-content="删除 token" data-variation="mini"
+													id="delete-token">
+													<i class="trash icon"></i>
+												</button>
+												<button class="ui button" id="copy-verify-script"
+													onclick="showCopyModal()">
+													获取
+												</button>
+											</span>
+										</p>
+										<p>
+											<span class="ui action small input">
+												<input type="text" placeholder="token" id="token-input"
+													style="width: 12em;">
+												<button class="ui button" id="load-token">载入</button>
+											</span>
+										</p>
+									</div>
+									<h4 class="ui top attached block header">分区</h4>
+									<div class="ui bottom attached segment">
+										<p>当前分区：
+											<span id="room-status">
+												<span class="ui gray label">N/A</span>
+												<span class="ui gray label">id: N/A</span>
+											</span>
+										</p>
+										<p id="room-intro-seg">分区介绍：</p>
+										<p id="owned-rooms">创建的分区：</p>
+										<p id="joined-rooms">加入的分区：</p>
+										<small>显然这个「加入的」里面不包含公开分区和自己创建的分区</small>
+									</div>
+									<h4 class="ui top attached block header">设置</h4>
+									<div class="ui bottom attached segment">
+										<script>
+											function loadOption(name, el) {
+												window[name] = localStorage.getItem(name) === 'true';
+												el.checkbox({
+													onChange: function() {
+														const value = $(this).parent().checkbox('is checked');
+														localStorage.setItem(name, window[name] = value);
+													}
+												});
+												el.checkbox(window[name] ? 'set checked' : 'set unchecked');
+											}
+											$(() => {
+												loadOption('ctrlEnterEnabled', $('#ctrlenter-enabled'));
+												loadOption('ctrlShiftEnterEnabled', $('#ctrlshiftenter-enabled'));
+												loadOption('ctrlShiftEnterEnabled', $('#ctrlshiftenter-enabled'));
+												loadOption('displayPMToastAfterSub', $('#display-pm-toast-after-sub'));
+											});
+										</script>
+										<div class="ui toggle checkbox" style="display: block; margin-bottom: 20px;"
+											id="ctrlenter-enabled">
+											<input type="checkbox">
+											<label>Ctrl+Enter 发送犇犇</label>
+										</div>
+										<div class="ui toggle checkbox" style="display: block; margin-bottom: 20px;"
+											id="ctrlshiftenter-enabled">
+											<input type="checkbox">
+											<label>Ctrl+Shift+Enter 使用分裂按钮发送</label>
+										</div>
+										<div class="ui toggle checkbox" style="display: block;"
+											id="display-pm-toast-after-sub">
+											<input type="checkbox">
+											<label>订阅私信分区后仍然显示私信提示</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="ui tab wide container" data-tab="joke">
+			<div style="margin-top: 28px; ">
+				<div class="ui main wide container">
+					<div style="padding-left: 1em; padding-right: 1em; ">
+						<div class="ui active tab wide container">
+							<div class="ui two column grid">
+								<div class="two column row">
+									<div class="twelve wide column">
+										<table class="ui selectable table" style="margin-top: 0px;">
+											<thead id="roomlist-header">
+												<tr>
+													<th class="center aligned nopadding" style="width: 5%;">状态</th>
+													<th style="width: 15%;">名称</th>
+													<th style="width: 55%;">一句话介绍</th>
+												</tr>
+											</thead>
+											<tbody id="roomlist">
+												<tr>
+													<td class="center aligned"><i class="icon question"></i></td>
+													<td><a href="./luogu-joke">luogu-joke</a></td>
+													<td>sam!1</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ui tab wide container" data-tab="createroom-tab">
+							<div class="ui segment">
+								<h1>创建分区</h1>
+								<ul>
+									<li>每个用户允许创建 <span><span class="katex"><span class="katex-mathml"><math
+														xmlns="http://www.w3.org/1998/Math/MathML">
+														<semantics>
+															<mrow>
+																<mn>3</mn>
+															</mrow>
+															<annotation encoding="application/x-tex">5</annotation>
+														</semantics>
+													</math></span><span class="katex-html" aria-hidden="true"><span
+														class="base"><span class="strut"
+															style="height:0.64444em;vertical-align:0em;"></span><span
+															class="mord">5</span></span></span></span></span> 个私有分区。
+									</li>
+									<li>私有分区原则上不会受到任何管辖，但是禁止干扰伪犇正常运行或用户正常使用。</li>
+									<li>私有分区的内容不公开但也不保密，tiger0133
+										仍然可以看见任何私有分区的聊天记录。<strong>如果有需要保密的内容（如出题组内部交流），请不要使用私有分区功能。</strong></li>
+									<li>在列表中公开的私有分区的名称和介绍不得违反中华人民共和国法律法规。</li>
+								</ul>
+								<p id="createlimit-display">剩余可创建分区数量：N/A</p>
+								<span class="ui action small input">
+									<input type="text" placeholder="分区名称" id="roomname">
+									<button class="ui button" id="createroom-btn">创建分区</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
 	</body>
 </html>
