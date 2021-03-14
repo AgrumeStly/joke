@@ -32,12 +32,14 @@
 						var pos = document.getElementById("list1");
 						json.luogujoke.map(luogujoke => {
 							var liPos = document.createElement("li");
-							liPos.innerHTML = `<p>${luogujoke.text}</p>`;
-							pos.append(liPos);
+							if (luogujoke.text != "") {
+								liPos.innerHTML = `<p>${luogujoke.text}</p>`;
+								pos.append(liPos);
+							}
 						});
 						json.data.map(data => {
-							var liPos = document.createElement("p");
-							liPos.innerHTML = `<small>upd:${data.updtime}</small>`;
+							var liPos = document.createElement("h4");
+							liPos.innerHTML = `</h4>最后更新时间:${data.updtime}</h4>`;
 							pos.append(liPos);
 						});
 					}
@@ -46,7 +48,7 @@
 			}
 		</script>
 
-		<h1>块来写消化/kel</h1>
+		<h3>块来写消化/kel</h3>
 		<div id="vcomments"></div>
 		<script>
 			new Valine({
