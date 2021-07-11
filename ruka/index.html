@@ -79,17 +79,17 @@
 
 										<ol id="list1">
 											<div id="list1-header" align="middle">
-												<h1>Ruka</h1>
+												<h1>Luogu-JOKE</h1>
 												<h2>= 绝对机密 =</h2>
 											</div>
 										</ol>
 										<script>
 											var HTML = document.writeln(`
 												<big><big><big><big><big><big><big><big><big><p align=\"middle\"> 疯狂加载中... </p></big></big></big></big></big></big></big></big></big><br>
-												<big><big><big><p align=\"middle\"> SSH!1 </p></big></big></big>
+												<big><big><big><p align=\"middle\"> SAM!1 </p></big></big></big>
 											`);
 											window.onload = function() {
-												var url = "joke-data.json";
+												var url = "/joke-data.json";
 												var request = new XMLHttpRequest();
 												request.open("get", url);
 												request.send(null);
@@ -98,10 +98,10 @@
 														var json = JSON.parse(request.responseText);
 														//console.log(json);
 														var pos = document.getElementById("list1");
-														json.ruka.map(ruka => {
+														json.luogujoke.map(luogujoke => {
 															var liPos = document.createElement("li");
-															if (ruka.text != "") {
-																liPos.innerHTML = `<p>${ruka.text}</p>`;
+															if (luogujoke.text != "") {
+																liPos.innerHTML = `<p>${luogujoke.text}</p>`;
 																pos.append(liPos);
 															}
 														});
